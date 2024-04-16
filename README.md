@@ -1,4 +1,5 @@
-This module is compatible with adafruit rgb module.
+## ILI9225 tft display micropython module
+### This module is compatible with <a href="https://github.com/adafruit/micropython-adafruit-rgb-display">adafruit rgb module</a>.
 **Note**: This module is tested with ESP8266 and the latest version of micropython(1.22.2) platform.
 #### How to use:
 ```python
