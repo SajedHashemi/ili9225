@@ -73,3 +73,5 @@ while True:
     tft.text(disp, f"Error: {result['message']}", x=0, y=y,color=fg_color,background=bg_color)
   time.sleep(5)
 ```
+
+<center><img src="" /></center>center>
