@@ -45,7 +45,7 @@ fg_color = random.getrandbits(24)
 bg_color = tft.COLOR_BLACK
 disp.fill(bg_color)
 
-if not wlan.isconnected(): network_connect("ODIN","odin2022!@#")
+if not wlan.isconnected(): network_connect("****","****")
 print (f"\nLocalIP: {wlan.ifconfig()[0]}")
 tft.text(disp, f"LocalIP: {wlan.ifconfig()[0]}",x=0,y=y,color=fg_color,background=bg_color)
 
