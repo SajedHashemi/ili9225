@@ -74,4 +74,4 @@ while True:
   time.sleep(5)
 ```
 
-<center><img src="https://github.com/SajedHashemi/ili9225/blob/main/ili9225.jpg" width="250" /></center>
+<center><img src="https://github.com/SajedHashemi/ili9225/blob/main/image.jpg" width="250" /></center>
