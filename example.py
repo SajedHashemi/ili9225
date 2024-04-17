@@ -4,8 +4,6 @@ import machine
 import ili9225 as tft
 import random
 
-y = 0
-
 spi = machine.SPI(1, baudrate=40000000)
 disp = tft.ILI9225(spi, cs=machine.Pin(15), dc=machine.Pin(0), rst=machine.Pin(16))
 
