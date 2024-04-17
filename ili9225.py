@@ -106,3 +106,40 @@ def text(display, text, x=0, y=0, color=0xffff, background=0x0000):
     y += 8;
     if y >= display.height:
       break
+      
+def show_bmp(display, filename, x=0, y=0, center=False, bg_color=0xffff):
+  def lebytes_to_int(bytes):
+    n = 0x00
+    while len(bytes) > 0:
+      n <<= 8
+      n |= bytes.pop()
+    return int(n)
+  
+  def color565(r, g, b):
+    return (r & 0xf8) << 8 | (g & 0xfc) << 3 | b >> 3
+
+  with open(f"{filename}.bmp", 'rb') as f:
+    img_bytes = list(bytearray(f.read(38)))  
+    assert img_bytes[0:2] == [66, 77], "Not a valid BMP file"
+    assert lebytes_to_int(img_bytes[30:34]) == 0, "Compression is not supported"
+    assert lebytes_to_int(img_bytes[28:30]) == 24, "Only 24-bit colour depth is supported"
+
+    start_pos = lebytes_to_int(img_bytes[10:14])
+    end_pos = start_pos + lebytes_to_int(img_bytes[34:38])
+
+    width = lebytes_to_int(img_bytes[18:22])
+    height = lebytes_to_int(img_bytes[22:26])
+    
+    f.seek(start_pos)
+    
+    if center:
+      x = (ILI9225_TFTWIDTH // 2) - (width // 2)
+      y = (ILI9225_TFTHEIGHT // 2) - (height // 2)
+    
+    for col in range((height+y), y ,-1):
+      img_bytes = list(bytearray(f.read(width*3)))
+      for row in range((width+x), x, -1):
+        color = color565(img_bytes.pop(),img_bytes.pop(),img_bytes.pop())
+        if color != bg_color:
+          display.pixel(row,col, color)
+
